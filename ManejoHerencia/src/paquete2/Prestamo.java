@@ -1,38 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package paquete2;
 
-/**
- *
- * @author reroes
- */
+package paquete2;
+import paquete5.*;
 public class Prestamo {
-    protected String beneficiario;
+    protected Persona beneficiario;
     protected int tiempoPrestamo;
     protected String ciudadPrestamo;
-    
-    public Prestamo(String b, int t, String c){
-        beneficiario = b;
-        tiempoPrestamo = t;
+
+    public Prestamo(Persona benefi, int tiempres, String ciudpres) {
+        beneficiario = benefi;
+        tiempoPrestamo = tiempres;
+        ciudadPrestamo = ciudpres;
+
+    }
+
+    public void establecerBeneficiario(Persona c) {
+        beneficiario = c;
+    }
+
+    public void establecerTiempoPrestamo(int c) {
+        tiempoPrestamo = c;
+    }
+
+    public void establecerCiudadPrestamo(String c) {
         ciudadPrestamo = c;
-        
-    }
-    /* public void establecerbeneficiario(String ben){
-        beneficiario = ben;
-    }
-    public void establecertiempoPrestamo(int ti){
-        tiempoPrestamo = ti;
-    }
-    public void establecerciudadPrestamo(String ciu){
-        ciudadPrestamo = ciu;
-    } */
-
-    public Prestamo(String n, String ap, String iden, double e, double numAsg) {
     }
 
-    public Prestamo(String n, String ce, double vac, double vam) {
+    public Persona obtenerBeneficiario() {
+        return beneficiario;
     }
+
+    public int obtenerTiempoPrestamo() {
+        return tiempoPrestamo;
+    }
+
+    public String obtenerCiudadPrestamo() {
+        return ciudadPrestamo;
+    }
+
+    @Override
+    public String toString() {
+        String cadena = String.format("Beneficiario: %s\n"
+                + "Tiempo del préstamo en meses: %d\n"
+                + "Ciudad: %s\n",
+                beneficiario, tiempoPrestamo, ciudadPrestamo);
+        return cadena;
+    }  
 }

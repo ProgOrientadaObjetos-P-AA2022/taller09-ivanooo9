@@ -1,81 +1,87 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package paquete3;
 
+package paquete3;
+import paquete5.Persona;
 import paquete2.Prestamo;
 
-/**
- *
- * @author reroes
- */
-public class PrestamoAutomovil extends Prestamo {
+public class PrestamoAutomovil extends Prestamo{
+    protected String tipoAuto;
+    protected String marcaAuto;
+    protected Persona garante1;
+    protected double valorAutomovil;
+    protected double valorMensual;
 
-    String tipoautomovil;
-    String marca;
-    String garante;
-    double valorauto;
-    double valormensualpago;
-
-    public PrestamoAutomovil(String n, String ap, String iden, double e,
-            double numAsg) {
-        super(n, ap, iden, e, numAsg);
-        tipoautomovil = n;
-        marca = ap;
-        garante = iden;
-        valorauto = e;
-        valormensualpago = numAsg;
+    public PrestamoAutomovil(Persona per, int num, String nom, String tipo,
+                            String marca, Persona garant, double valor) {
+        super(per, num, nom);
+        tipoAuto = tipo;
+        marcaAuto = marca;
+        garante1 = garant;
+        valorAutomovil = valor;
+        
 
     }
-    public String getMarca() {
-        return marca;
-    }
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-    public double getValorauto() {
-        return valorauto;
-    }
-    public void setValorauto(double valorauto) {
-        this.valorauto = valorauto;
-    } 
-    public String getGarante() {
-        return garante;
+
+    public void establecerTipo(String c) {
+        tipoAuto = c;
     }
 
-    public void setGarante(String garante) {
-        this.garante = garante;
-    }
-    public String getTipoautomovil() {
-        return tipoautomovil;
+    public void establecerMarca(String c) {
+        marcaAuto = c;
     }
 
-    public void setTipoautomovil(String tipoautomovil) {
-        this.tipoautomovil = tipoautomovil;
+    public void establecerGarante(Persona c) {
+        garante1 = c;
     }
 
-    
-    public void calcularmensualpago() {
-        double valorc = 0;
-        valorc = valorauto  / tiempoPrestamo;
-        valormensualpago = valorc;
+    public void establecerValorAutomovil(double c) {
+        valorAutomovil = c;
     }
 
+    public void calcularValorMensual() {
+        valorMensual = valorAutomovil / tiempoPrestamo;
+    }
 
+    public String obtenerTipo() {
+        return tipoAuto;
+    }
+
+    public String obtenerMarca() {
+        return marcaAuto;
+    }
+
+    public Persona obtenerGarante() {
+        return garante1;
+    }
+
+    public double obtenerValorAutomovil() {
+        return valorAutomovil;
+    }
+
+    public double obtenerValorMensual() {
+        return valorMensual;
+    }
+
+    @Override
     public String toString() {
-        String cadenaFinal = String.format("%s", super.toString());
+        
+        String cadenaFinal = "====================\n"+
+                             "\nPRESTAMO AUTOMOVIL\n"+
+                             "====================\n";
+        cadenaFinal = String.format("%s\n%s",cadenaFinal, super.toString());
         cadenaFinal = String.format("%s\n"
-                + "Costo Asignatura: %.2f\n"
-                + "Número de Asignaturas: %d\n"
-                + "Total Matricula: %.2f\n",
+                + "Tipo de automóvil: %s\n"
+                + "Marca de automóvil: %s\n"
+                + "Garante: %s\n"
+                + "Valor de automóvil: %.2f\n"
+                + "Valor mensual de pago del prestamo: %.2f\n",
                 cadenaFinal,
-                getMarca(),
-                getValorauto(),
-                getGarante(),getTipoautomovil());
+                obtenerTipo(),
+                obtenerMarca(),
+                obtenerGarante(),
+                obtenerValorAutomovil(),
+                obtenerValorMensual());
+
 
         return cadenaFinal;
     }
-
 }

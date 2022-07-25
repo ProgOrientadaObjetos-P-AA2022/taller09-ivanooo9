@@ -1,68 +1,74 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package paquete4;
 
+package paquete4;
+import paquete5.*;
 import paquete2.Prestamo;
 
-/**
- *
- * @author reroes
- */
 public class PrestamoEducativo extends Prestamo{
-    String nivelestudio;
-    String Centroeducativo;
-    double valorcarrera;
-    double valormensualp;
+    protected String nivelEstudio;
+    protected InstitucionEducativa centroEducativo;
+    protected double valorCarrera;
+    protected double valorMensual;
 
-    public PrestamoEducativo(String n, String ce, double vac, double vam) {
-        super(n, ce, vac, vam);
-        nivelestudio = n;
-        Centroeducativo =ce;
-        valorcarrera = vac;
-        valormensualp = vam;
-        
+    public PrestamoEducativo(Persona pers, int num, String nom, String nivel,
+            InstitucionEducativa centedu, double valorc) {
+        super(pers, num, nom);
+        nivelEstudio = nivel;
+        centroEducativo = centedu;
+        valorCarrera = valorc;
 
-    }
-    public String getNivelestudio() {
-        return nivelestudio;
     }
 
-    public void setNivelestudio(String nivelestudio) {
-        this.nivelestudio = nivelestudio;
+    public void establecerNivelEstudio(String c) {
+        nivelEstudio = c;
     }
-    public String getCentroeducativo() {
-        return Centroeducativo;
+
+    public void establecerCentroEducativo(InstitucionEducativa c) {
+        centroEducativo = c;
     }
-    public void setCentroeducativo(String centroeducativo) {
-        Centroeducativo = centroeducativo;
+
+    public void establecerValorCarrera(double c) {
+        valorCarrera = c;
     }
-    public double getValorcarrera() {
-        return valorcarrera;
+
+    public void calcularValorMensual() {
+        valorMensual = (valorCarrera / tiempoPrestamo)- 
+                ((valorCarrera / tiempoPrestamo) * 0.1);
     }
-    public void setValorcarrera(double valorcarrera) {
-        this.valorcarrera = valorcarrera;
+
+    public String obtenerNivelEstudio() {
+        return nivelEstudio;
     }
-     
-    public void calcularmensualpago() {
-        double valorc = 0;
-        valorc = valorcarrera  / tiempoPrestamo;
-        valormensualp = valorc;
+
+    public InstitucionEducativa obtenerCentroEducativo() {
+        return centroEducativo;
     }
+
+    public double obtenerValorCarrera() {
+        return valorCarrera;
+    }
+
+    public double obtenerValorMensual() {
+        return valorMensual;
+    }
+
+    @Override
     public String toString() {
-        String cadenaFinal = String.format("%s", super.toString());
-        cadenaFinal = String.format("%s\n"
-                + "Costo Asignatura: %.2f\n"
-                + "Número de Asignaturas: %d\n"
-                + "Total Matricula: %.2f\n",
-                cadenaFinal,
-                getNivelestudio(),
-                getCentroeducativo(),
-                getValorcarrera());
+        
+        String reporte = "===================\n"+
+                         "\nPRESTAMO EDUCATIVO\n"+
+                         "=====================\n";
+        reporte = String.format("%s%s",reporte, super.toString());
+        reporte = String.format("%s\n"
+                + "Nivel de estudio: %s\n"
+                + "Centro Educativo: %s\n"
+                + "Valor de la carrera: %.2f\n"
+                + "Valor mensual de pago para le prestamo: %.2f\n",
+                reporte,
+                obtenerNivelEstudio(),
+                obtenerCentroEducativo(),
+                obtenerValorCarrera(),
+                obtenerValorMensual());
 
-        return cadenaFinal;
+        return reporte;
     }
-
 }
